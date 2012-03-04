@@ -1,0 +1,19 @@
+\documentclass[12pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{a4wide}
+
+\newcounter{chapter}
+\setcounter{chapter}1
+
+\usepackage{byrotmath-math}
+\usepackage{byrotmath-text}
+\usepackage{byrotmath-img}
+
+\def\start#1#2#3{
+	\begin{document}
+	\noindent{\begin{center}#1\end{center}}
+	\bigskip#2#3
+}
+\def\bye{\end{document}}
+

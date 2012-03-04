@@ -1,0 +1,153 @@
+%	Makra pro psaní matematických textů.
+%	Sestavil Tomáš Jirotka 2006 - 2008.
+
+% vlozeni zavislosti
+%\usepackage{bbm}
+\usepackage{amssymb}
+
+% tvrzení ve stylu AMS
+%\newtheoremstyle{[style_name]}{[space above]}{[space below]}{[body font]}{[Indent amount]}{[thm head font]}{[thm head affix]}{[space after head]}{[thm head spec]}
+% věty, tvrzení, ...
+\newtheoremstyle{s_tvrzeni}{3mm}{3mm}{\it}{0mm}{\bfseries}{.}{5mm}{}
+% definice, značení, ...
+\newtheoremstyle{s_definice}{3mm}{3mm}{\normalfont}{0mm}{\bfseries}{.}{5mm}{}
+% důkazy, ponámky, ...
+\newtheoremstyle{s_dukaz}{3mm}{3mm}{\normalfont}{0mm}{\em}{.}{5mm}{}
+
+\theoremstyle{s_tvrzeni}
+\newtheorem{veta}{Věta}%[chapter]
+\newtheorem{dusl}[veta]{Důsledek}
+\newtheorem{dusledek}[veta]{Důsledek}
+\newtheorem{lemma}[veta]{Lemma}
+\newtheorem{alg}[veta]{Algoritmus}
+\newtheorem{algoritmus}[veta]{Algoritmus}
+\newtheorem{tvrzeni}[veta]{Tvrzení}
+\newtheorem*{pozorovani}{Pozorování}
+\newtheorem{veticka}[veta]{Větička}
+
+\theoremstyle{s_definice}
+\newtheorem{definice}[veta]{Definice}
+\newtheorem*{znaceni}{Značení}
+\newtheorem*{pr}{Příklad}
+\newtheorem*{priklad}{Příklad}
+\newtheorem*{problem}{Problém}
+\newtheorem*{uloha}{Úloha}
+\newtheorem*{otazka}{Otázka}
+
+% dukazy a řešení úloh (obé končí Q.E.D.)
+\theoremstyle{s_dukaz}
+\newtheorem*{envdukaz}{Důkaz}
+\newenvironment{dukaz}{\begin{envdukaz}}{\qed\end{envdukaz}}
+\newtheorem*{envreseni}{Rešení}
+\newenvironment{reseni}{\begin{envreseni}}{\qed\end{envreseni}}
+
+\newtheorem*{pozn}{Poznámka}
+\newtheorem*{poznamka}{Poznámka}
+\newtheorem*{napoveda}{Nápověda}
+
+% operátory, funkce, symboly a jiné značky
+\def\dif{\mathrm d}			% diferenciál
+\def\Dif{\mathrm D}			% totální diferenciál
+\def\st{^\circ}				% stupeň
+\def\vol{\mathop{\mathrm vol}\nolimits}	% objem
+\def\doplnek{^\complement}		% komplement
+\def\transpon{^{\mathsf T}}		% transponovane
+\def\inv{^{-1}}				% inverze
+\def\dva{\ifmmode\{0,1\}\else$\{0,1\}$ \fi}	% {0, 1}
+\def\dvan{\ifmmode\{0,1\}^n\else$\{0,1\}^n$ \fi}	% {0, 1}^n
+\def\mod{\,{\rm mod}\,}			% lepsi modulo
+\def\E{\mathop{\mathsf E}\nolimits}	% stredni hodnota
+\def\Var{\mathop{\mathrm Var}\nolimits}	% variance
+\def\sgn{\mathop{\mathrm sgn}\nolimits} % signum
+
+
+% písmo pro vektory
+\font\fnssb=bssb10 at 12pt
+\def\vektor#1{\hbox{\fnssb #1}}
+%\def\vektor#1{\textbf{\textsf{\em #1}}}
+\let\vect=\vektor
+
+
+% jine znaky a zkratky
+\let\underscore\_			% podtrzitko
+\def\_#1{_{\mathrm{#1}}}		% stojate pismo v dolnich indexech
+\def\({\left(}				% zkratky pro velke kulate zavorky
+\def\){\right)}
+\def\uhel{{{}\!\!<\nobreak\kern-5pt)\,}} % znacka uhlu
+
+
+% pismenka
+\let\oldepsilon=\epsilon
+\let\epsilon=\varepsilon
+\let\oldrho=\rho
+\let\rho=\varrho
+\let\oldtheta=\theta
+\let\theta=\vartheta
+\let\oldphi=\phi
+\let\phi=\varphi
+\let\d=\dif
+\def\eu{\mathrm e}
+\def\R{\mathbbm R}
+\def\N{\mathbbm N}
+\def\Q{\mathbbm Q}
+\def\Z{\mathbbm Z}
+\def\F{\mathbbm F}
+\def\im{\mathrm i}
+\let\e=\eu
+
+
+% definice velkych pismen recke abecedy, ktere standardne nejsou
+\def\Alpha{\mathrm A}
+\def\Beta{\mathrm B}
+\def\Epsilon{\mathrm E}
+\def\Zeta{\mathrm Z}
+\def\Eta{\mathrm H}
+\def\Iota{\mathrm I}
+\def\Kappa{\mathrm K}
+\def\Mu{\mathrm M}
+\def\Nu{\mathrm N}
+\def\Omicron{\mathrm O}
+\def\Rho{\mathrm P}
+\def\Tau{\mathrm T}
+\def\Chi{\mathrm X}
+
+% pri rozdeleni rovnice v miste `=' se = zopakuje na dalsi radce
+%\bgroup\uccode`~=`\=\uppercase{\egroup\def~}{\matheq\discretionary{}{=}{}}
+%\mathchardef\matheq=\mathcode`\=
+%\mathcode`\=="8000      % = je v matematice aktivni znak
+%\relpenalty=10000       % nikde jinde se relace lamat nesmeji
+
+
+% pohodlne psani cisel a jednotek (napr. $ G = "6,672e-11 N.m^2.kg^{-2}" $)
+\def\E #1 {\cdot 10^{#1}}                       % mocnina desitky
+\bgroup\uccode`~=`e\uppercase{\egroup\let~}\E   % aktivni e se chova jako \E
+\bgroup\uccode`~=`"\uppercase{\egroup\def~}#1"{\jedA #1 @@}
+\mathcode`\"="8000      % " je v matematice aktivni a expanduje na \jedA
+\def\jedA #1 {\bgroup\mathcode`\,="013B \bgroup \mathcode`\e="8000 #1 \jedB}
+\def\jedB #1@@{\egroup\if @#1@\else\,\rm\mathcode`\.="0201 #1\fi\egroup}
+% pro psani samostatnych jednotek (napr. $\jd{m.s^{-1}}$)
+\def\jd#1{\bgroup\bgroup\!\jedB#1@@}
+
+
+% nesklonene recke minusky \pi \micro
+%\font\tengr=kdgr10 at 12pt
+%\font\sevengr=kdgr10 at 7pt
+%\font\fivegr=kdgr10 at 5pt
+\font\tengr=cmmu10 at 12pt
+\font\sevengr=cmmu10 at 7pt
+\font\fivegr=cmmu10 at 5pt
+\let\pii=\pi							% pi italikou
+\def\pi{{\mathchoice{\hbox{\tengr p}}{\hbox{\tengr p}}		% pi stojate
+		{\hbox{\sevengr p}}{\hbox{\fivegr p}}}}
+\def\micro{\mathchoice{\hbox{\tengr m}}{\hbox{\tengr m}}	% mi stojate
+		{\hbox{\sevengr m}}{\hbox{\fivegr m}}}
+
+
+% neskodna vlnka v matematice
+\def~{\ifhmode\penalty10000\
+	\else\relax\fi}
+
+
+\def\mathbbm#1{\mathbb{#1}}
+
+

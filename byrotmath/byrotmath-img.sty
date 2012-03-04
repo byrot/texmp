@@ -1,0 +1,25 @@
+%	Makra pro psaní matematických textů.
+%	Sestavil Tomáš Jirotka 2006 - 2008.
+
+% jednoduche vkladani obrazku z metapostu
+%
+% \obr{nazev_souboru.pdf}{Titulek k obrázku}
+%
+
+\usepackage{graphics}
+\def\obr#1#2{
+	\addtocounter{figure}{1}
+	\begin{figure}[!htp]
+	  \centerline{
+	    \includegraphics{#1}
+	  }
+	  
+	  \bigskip\noindent
+	  \begin{center}
+		Obr. \thefigure. #2
+	  \end{center}
+	\end{figure}
+}
+
+
+

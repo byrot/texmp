@@ -1,0 +1,67 @@
+%	Makra pro psaní matematických textů.
+%	Sestavil Tomáš Jirotka 2006 - 2008.
+
+
+% vložení závislostí
+\usepackage{enumerate}
+
+
+% české uvozovky
+\def\uv#1{,,#1``}
+
+
+% CISLOVANE SEZNAMY
+\newcounter{ci}	% univerzalne pouzivana pocitadla, vzdy se vynuluji
+\newcounter{ca}
+\newcounter{cc}
+%\def\seznamz{
+%	\begin{list}{(\roman{c})}{\usecounter{c}}
+%		\setcounter{c}{0}
+%		\setlength{\rightmargin}{1in}
+%		\setlength{\labelsep}{0.5cm}
+%		\setlength{\leftmargin}{4cm}
+%		\setlength{\listparindent}{0cm}
+%		\setlength{\labelwidth}{2cm}
+%}
+%\def\seznamk{\end{list}}
+
+\def\seznamz{\siz} % pro zachovani zpetne kompatibility
+\def\seznamk{\sik}
+
+% (i) (ii) ... \siz \sik
+\def\siz{
+	\begin{list}{\rm (\roman{ci})}{\usecounter{ci}}
+		\setcounter{ci}{0}
+		\setlength{\labelwidth}{2cm}
+}
+\def\sik{\end{list}}
+
+% (a) (b) ... \saz \sak
+\def\saz{
+	\begin{list}{\rm (\alph{ca})}{\usecounter{ca}}
+		\setcounter{ca}{0}
+		\setlength{\labelwidth}{2cm}
+}
+\def\sak{\end{list}}
+
+
+% (1) (2) ... \scz \sck
+\def\scz{
+	\begin{list}{\rm (\arabic{cc})}{\usecounter{cc}}
+		\setcounter{cc}{0}
+		\setlength{\labelwidth}{2cm}
+}
+\def\sck{\end{list}}
+
+
+
+
+% zpetna kompatibilita
+\let\seznamz=\siz
+\let\seznamk=\sik
+
+
+% podpis na konci radku
+\def\podpis#1\par{\unskip
+    \nobreak\hfill\penalty71\hskip2em\hbox{}\nobreak\hfill\hbox{\it #1\/}\par}
+
